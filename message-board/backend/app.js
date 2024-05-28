@@ -3,6 +3,8 @@ const app = express();
 const port = 5001;
 app.use(express.json());
 
+require("dotenv").config();
+
 const db = require("./firebase");
 const {
   collection,
