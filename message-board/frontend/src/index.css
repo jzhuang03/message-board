@@ -1,0 +1,108 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Outfit', 'Segoe UI', 'Roboto', 'Oxygen',
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    background: url('./src/assets/background.gif') no-repeat center center fixed;
+    background-size: cover; 
+    color: black;
+    height: 100%; 
+  }
+
+  .message-list {
+    display: grid;
+    gap: 20px; 
+}
+
+.individual-message {
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+h1{
+    padding: 2rem;
+    font-size: 2rem;
+text-align: center;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+h2{
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+p{
+    font-family: sans-serif;
+}
+
+.main-container {
+    display: flex;
+    max-width: 400px;
+    margin: 0 auto; 
+    padding: 20px; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    background-color: #f6e4f2;
+    flex-direction: column;
+}
+
+.message-container {
+    display: flex;
+    max-width: 700px;
+    margin: 20px auto; 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    overflow-y: auto; 
+}
+
+.message-list {
+    max-height: 400px; 
+    overflow-y: auto; 
+}
+
+/* Style submit button */
+.main-container button[type="submit"] {
+    padding: 10px 20px; 
+    background-color: #5a8c5e;
+    color: black; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    transition: background-color 0.3s ease;
+    align-items: center;
+    text-align: center;
+}
+
+.message-container button {
+    padding: 3px 8px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    transition: background-color 0.3s ease; 
+}
+
+/* Style Save button */
+.message-container button.save-button {
+    background-color: #2196f3; 
+    color: #fff;
+}
+
+/* Style Delete button */
+.message-container button.delete-button {
+    background-color: #f44336; 
+    color: #fff; 
+    align-items: ;
+}
+
+/* Hover effect for buttons */
+.message-container button:hover {
+    opacity: 0.8; 
+}
+

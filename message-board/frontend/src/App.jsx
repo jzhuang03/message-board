@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import "./App.css";
 import axios from "axios";
 
-import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import TextField from "@material-ui/core/TextField";
 
 function App() {
   const [first, setFirst] = useState("");
@@ -92,37 +92,41 @@ function App() {
 
   return (
     <div>
-      <h1>The Message Board</h1>
+      <h1> 𐙚 ‧₊˚ ⋅ The Message Board ᯓᡣ𐭩 </h1>
       <form onSubmit={handleSubmit}>
         <div className="main-container">
-          <label>First Name: </label>
-          <input
-            type="text"
+          <h2> Submit your message! ꒰ᐢ. .ᐢ꒱ </h2>
+          <TextField
+            id="first-name"
+            label="First Name"
+            variant="outlined"
             value={first}
             onChange={(e) => setFirst(e.target.value)}
             required
-          ></input>
-          <br></br>
-          <label>Last Name: </label>
-          <input
-            type="text"
-            // 'value=' will help display the initial inputs when edit mode is enabled
+          />
+          <br />
+          <TextField
+            id="last-name"
+            label="Last Name"
+            variant="outlined"
             value={last}
             onChange={(e) => setLast(e.target.value)}
             required
-          ></input>
-          <br></br>
-          <label>Username: </label>
-          <input
-            type="text"
+          />
+          <br />
+          <TextField
+            id="username"
+            label="Username"
+            variant="outlined"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
           <br />
-          <label>Message: </label>
-          <input
-            type="text"
+          <TextField
+            id="message"
+            label="Message"
+            variant="outlined"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             required
@@ -132,41 +136,53 @@ function App() {
           {editingMessageId === null && <button type="submit">Submit</button>}
         </div>
       </form>
-      <div>
-        <h2>Recent Messages:</h2>
-        {allData.map((user, index) => (
-          <Card key={index} variant="outlined">
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {user.first} {user.last}
-              </Typography>
-              <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                @{user.username}
-              </Typography>
-              <Typography variant="body2">{user.message}</Typography>
-            </CardContent>
-            <CardActions>
-              {editingMessageId !== user.id ? (
+      <div className="message-container">
+        <h2>Recent Messages ᡣ𐭩 </h2>
+        <div className="message-list">
+          {allData.map((user, index) => (
+            <Card key={index} variant="outlined">
+              <CardContent className="individual-message">
+                <Typography variant="h5" component="div">
+                  {user.first} {user.last}
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  @{user.username}
+                </Typography>
+                <Typography variant="body2">{user.message}</Typography>
+              </CardContent>
+              <CardActions>
+                {editingMessageId !== user.id ? (
+                  <Button
+                    onClick={() =>
+                      handleEditClick(
+                        user.id,
+                        user.username,
+                        user.message,
+                        user.first,
+                        user.last
+                      )
+                    }
+                  >
+                    Edit
+                  </Button>
+                ) : (
+                  <Button
+                    className="edit-button"
+                    onClick={() => handleEdit(user.id)}
+                  >
+                    Save
+                  </Button>
+                )}
                 <Button
-                  onClick={() =>
-                    handleEditClick(
-                      user.id,
-                      user.username,
-                      user.message,
-                      user.first,
-                      user.last
-                    )
-                  }
+                  className="delete-button"
+                  onClick={() => handleDelete(user.id)}
                 >
-                  Edit
+                  Delete
                 </Button>
-              ) : (
-                <Button onClick={() => handleEdit(user.id)}>Save</Button>
-              )}
-              <Button onClick={() => handleDelete(user.id)}>Delete</Button>
-            </CardActions>
-          </Card>
-        ))}
+              </CardActions>
+            </Card>
+          ))}
+        </div>
       </div>
     </div>
   );
