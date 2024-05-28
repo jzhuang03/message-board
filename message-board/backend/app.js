@@ -73,17 +73,13 @@ app.delete("/msgs/:id", async (req, res) => {
 app.put("/msgs/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const { username, message } = req.body;
-
-    // Update the document in Firestore
-    const messageRef = doc(db, "messages", id);
-    await updateDoc(messageRef, {
-      first: first,
-      last: last,
-      username: username,
-      message: message,
+    const { username, message, first, last } = req.body;
+    await updateDoc(doc(db, "messages", id), {
+      ...(first && { first }),
+      ...(last && { last }),
+      ...(username && { username }),
+      ...(message && { message }),
     });
-
     res.status(200).json({ message: "Message updated successfully" });
   } catch (e) {
     res.status(400).json({ error: e.message });

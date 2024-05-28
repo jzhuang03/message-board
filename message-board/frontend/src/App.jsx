@@ -41,6 +41,8 @@ function App() {
       };
       await axios.post("http://localhost:5001/msgs", body);
       fetchData();
+      setFirst("");
+      setLast("");
       setUsername("");
       setMessage("");
     } catch (error) {
@@ -51,21 +53,32 @@ function App() {
   const handleEdit = async (id) => {
     try {
       const body = {
+        first: first,
+        last: last,
         username: username,
         message: message,
       };
       await axios.put(`http://localhost:5001/msgs/${id}`, body);
       fetchData();
       setEditingMessageId(null);
+
+      // Reset all fields after posting or editing
+      setFirst("");
+      setLast("");
+      setUsername("");
+      setMessage("");
     } catch (error) {
       console.error("Error editing message:", error);
     }
   };
 
-  const handleEditClick = (id, oldUsername, oldMessage) => {
+  const handleEditClick = (id, oldUsername, oldMessage, oldFirst, oldLast) => {
+    // Set state for all fields to be edited
+    setFirst(oldFirst);
+    setLast(oldLast);
     setUsername(oldUsername);
     setMessage(oldMessage);
-    setEditingMessageId(id);
+    setEditingMessageId(id); // Store the current editing message's ID
   };
 
   const handleDelete = async (id) => {
@@ -83,10 +96,21 @@ function App() {
       <form onSubmit={handleSubmit}>
         <div className="main-container">
           <label>First Name: </label>
-          <input type="text" onChange={(e) => setFirst(e.target.value)}></input>
+          <input
+            type="text"
+            value={first}
+            onChange={(e) => setFirst(e.target.value)}
+            required
+          ></input>
           <br></br>
           <label>Last Name: </label>
-          <input type="text" onChange={(e) => setLast(e.target.value)}></input>
+          <input
+            type="text"
+            // 'value=' will help display the initial inputs when edit mode is enabled
+            value={last}
+            onChange={(e) => setLast(e.target.value)}
+            required
+          ></input>
           <br></br>
           <label>Username: </label>
           <input
@@ -104,7 +128,8 @@ function App() {
             required
           />
           <br />
-          <button type="submit">Submit</button>
+          {/* Submit button will only appear when not editing */}
+          {editingMessageId === null && <button type="submit">Submit</button>}
         </div>
       </form>
       <div>
@@ -124,7 +149,13 @@ function App() {
               {editingMessageId !== user.id ? (
                 <Button
                   onClick={() =>
-                    handleEditClick(user.id, user.username, user.message)
+                    handleEditClick(
+                      user.id,
+                      user.username,
+                      user.message,
+                      user.first,
+                      user.last
+                    )
                   }
                 >
                   Edit
