@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const port = 5000;
+const port = 5001;
 app.use(express.json());
 
 const db = require("./firebase");
@@ -19,11 +19,11 @@ app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
 
-// get all posts
+// get all messaging posts
 app.get("/posts", async (req, res) => {
   try {
     let ret = [];
-    const querySnapshot = await getDocs(collection(db, "users"));
+    const querySnapshot = await getDocs(collection(db, "messages"));
     querySnapshot.forEach((doc) => {
       ret.push({
         id: doc.id,
@@ -41,7 +41,7 @@ app.put("/posts/:id", async (req, res) => {
   try {
     const id = req.params.id;
     const currentLikes = req.body.currentLikes;
-    await updateDoc(doc(db, "users", id), {
+    await updateDoc(doc(db, "messages", id), {
       likes: currentLikes + 1,
     });
     res.status(200).json({ message: "success" });
@@ -50,14 +50,14 @@ app.put("/posts/:id", async (req, res) => {
   }
 });
 
-// add a user
-app.post("/users", async (req, res) => {
+// add a new messaging post
+app.post("/msgs", async (req, res) => {
   try {
-    const first = req.body.first;
-    const last = req.body.last;
-    const docRef = await addDoc(collection(db, "users"), {
-      first: first,
-      last: last,
+    const username = req.body.username;
+    const message = req.body.message;
+    const docRef = await addDoc(collection(db, "messages"), {
+      username: username,
+      message: message,
       likes: 0,
     });
     res
