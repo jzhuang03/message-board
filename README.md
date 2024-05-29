@@ -1,7 +1,9 @@
 # Message Board Mini-Project
 
 ## Overview
-This project is a simple message board application where users can post messages using a username. It is built using React, Express, and Google Firestore. The application allows users to add, view, update, and delete messages. This straightforward approach ensures that messages persist across server restarts and page reloads thanks to Firestore integration.
+Message Board is a simple message board application where users can post messages using a username. It is built using React, Express, and Google Firestore. The application allows users to add, view, update, and delete messages. This straightforward approach ensures that messages persist across server restarts and page reloads thanks to Firestore integration.
+
+This project served as an effective platform for enhancing my proficiency in both backend and frontend development. It provided deep insights into the seamless interactions between components, thereby advancing my understanding of communication flows within the application.
 
 ## Demo 
 https://github.com/jzhuang03/message-board/assets/118019266/536ce56f-3c9b-444c-9d6e-95ef8469eaf1
