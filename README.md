@@ -4,7 +4,7 @@
 This project is a simple message board application where users can post messages using a username. It is built using React, Express, and Google Firestore. The application allows users to add, view, update, and delete messages. This straightforward approach ensures that messages persist across server restarts and page reloads thanks to Firestore integration.
 
 ## Demo 
-https://github.com/jzhuang03/message-board/assets/118019266/28fd5d6a-06a6-46b3-b6de-84220dd9bced
+https://github.com/jzhuang03/message-board/assets/118019266/536ce56f-3c9b-444c-9d6e-95ef8469eaf1
 
 ## Technologies Used
 - [React](https://reactjs.org/) - Used for building the user interface
