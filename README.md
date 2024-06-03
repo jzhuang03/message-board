@@ -14,7 +14,7 @@ https://github.com/jzhuang03/message-board/assets/118019266/536ce56f-3c9b-444c-9
 - [Google Firestore](https://firebase.google.com/docs/firestore) - Database for storing and retrieving messages using SDK configurations.
 
 ## Features
-- Post messages with a username.
+- Post messages with a username through form validation.
 - View all posted messages.
 - Edit and delete messages.
 - Simple and intuitive user interface.
